@@ -32,7 +32,7 @@ namespace Lykke.Job.OpsGenie.Services.Mappers
                 Actions = alert.Actions,
                 Alias = alert.Alias,
                 Description = alert.Description,
-                Details = alert.Details.ToJson(),
+                Details = alert.Details,
                 Entity = alert.Entity,
                 Message = alert.Message,
                 Tags = alert.Tags,

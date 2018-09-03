@@ -21,7 +21,7 @@ namespace Lykke.Job.OpsGenie.Services.OpsGenieApi.Contracts
         public IEnumerable<string> Actions { get; set; }
 
         [JsonProperty("details")]
-        public string Details { get; set; }
+        public object Details { get; set; }
 
         [JsonProperty("entity")]
         public string Entity { get; set; }

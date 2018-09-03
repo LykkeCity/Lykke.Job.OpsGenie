@@ -11,6 +11,7 @@ namespace Lykke.Job.OpsGenie.Core.Services.OpsGenieApi
         {
             Actions = Enumerable.Empty<string>();
             Tags = Enumerable.Empty<string>();
+            Details = new Dictionary<string, object>();
         }
 
         public string Message { get; set; }

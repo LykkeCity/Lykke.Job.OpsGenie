@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Flurl;
 using Flurl.Http;
 using Lykke.Job.OpsGenie.Core.Services.OpsGenieApi;
 using Lykke.Job.OpsGenie.Services.Mappers;
@@ -21,8 +22,8 @@ namespace Lykke.Job.OpsGenie.Services.OpsGenieApi
             try
             {
                 var resp = await _settings.ApiUrl
-                    .WithHeader("Authorization", $"GenieKey {_settings.ApiKey}")
                     .AppendPathSegment("v2/alerts")
+                    .WithHeader("Authorization", $"GenieKey {_settings.ApiKey}")
                     .PostJsonAsync(alert.MapToCreateAlertContract())
                     .ReceiveJson<CreateAlertResponceContract>();
 
@@ -33,7 +34,8 @@ namespace Lykke.Job.OpsGenie.Services.OpsGenieApi
             }
             catch (FlurlHttpException e)
             {
-                throw new OpsGenieApiAdapterException("Error while interaction with OpsGenieApi", 
+                throw new OpsGenieApiAdapterException($"Error while interaction with OpsGenieApi: " +
+                                                      $"{await e.GetResponseStringAsync()}", 
                     alert.MapToCreateAlertContract(), 
                     e);
             }
