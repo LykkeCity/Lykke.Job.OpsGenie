@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Lykke.Common.Log;
 using Lykke.Job.OpsGenie.AzureRepositories;
+using Lykke.Job.OpsGenie.AzureRepositories.Queue;
 using Lykke.Job.OpsGenie.Core.Domain;
 using Lykke.Job.OpsGenie.Core.Services;
 using Lykke.Job.OpsGenie.LifeTime;
@@ -70,6 +71,11 @@ namespace Lykke.Job.OpsGenie.Modules
                 .As<IDomainQueueReaderHost>()
                 .SingleInstance();
 
+            builder.RegisterType<DomainRegistrationQueueReader>()
+                .AsSelf()
+                .AutoActivate()
+                .SingleInstance();
+
             builder.RegisterType<PeriodicalHandlerHost>()
                 .AsSelf()
                 .AutoActivate()
@@ -78,6 +84,8 @@ namespace Lykke.Job.OpsGenie.Modules
             builder.RegisterType<DomainQueueFunctions>()
                 .AsSelf()
                 .SingleInstance();
+
+
             
             builder.Populate(_services);
         }

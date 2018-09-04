@@ -13,7 +13,6 @@ namespace Lykke.Job.OpsGenie.Services.QueueReader
     {
         private readonly IReloadingManager<string> _connString;
         private readonly ILogFactory _logFactory;
-        private readonly TimeSpan _queueTimer;
         private readonly IApiAdapterStorage _apiAdapterStorage;
 
         public DomainQueueReaderFactory(IReloadingManager<string> connString, ILogFactory logFactory, IApiAdapterStorage apiAdapterStorage)
@@ -21,12 +20,11 @@ namespace Lykke.Job.OpsGenie.Services.QueueReader
             _connString = connString;
             _logFactory = logFactory;
             _apiAdapterStorage = apiAdapterStorage;
-            _queueTimer = TimeSpan.FromMinutes(1);
         }
 
         public IDomainQueueReader Create(string domain)
         {
-            return new DomainQueueReader(_connString, domain, _logFactory, ProcessQueueMessage, _queueTimer);
+            return new DomainQueueReader(_connString, domain, _logFactory, ProcessQueueMessage);
         }
 
         private async Task ProcessQueueMessage(AlertQueueMessage queueMessage)

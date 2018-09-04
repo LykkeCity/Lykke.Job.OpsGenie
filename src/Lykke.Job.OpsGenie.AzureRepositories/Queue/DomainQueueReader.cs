@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AzureStorage.Queue;
+using Lykke.AzureQueueIntegration;
+using Lykke.AzureQueueIntegration.Subscriber;
 using Lykke.Common.Log;
 using Lykke.Job.OpsGenie.Contract;
 using Lykke.Job.OpsGenie.Core.Domain;
@@ -10,28 +11,31 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Queue
 {
     public class DomainQueueReader:IDomainQueueReader
     {
-        private readonly QueueReader _queueReader;
+        private readonly AzureQueueSubscriber<AlertQueueMessage> _subscriber;
 
-        public DomainQueueReader(IReloadingManager<string> connString, string domain, ILogFactory logFactory, Func<AlertQueueMessage, Task> processQueueMessage, TimeSpan timer)
+        public DomainQueueReader(IReloadingManager<string> connString, string domain, ILogFactory logFactory, Func<AlertQueueMessage, Task> processQueueMessage)
         {
-            _queueReader = new QueueReader(AzureQueueExt.Create(connString, QueueNames.AlertMessagePrefix + domain),
+            _subscriber = new AzureQueueSubscriber<AlertQueueMessage>(
                 $"DomainQueueReader-{domain}",
-                timer, 
-                logFactory);
+                new AzureQueueSettings
+                {
+                    ConnectionString = connString.CurrentValue
+                });
 
-            _queueReader.RegisterHandler(AlertQueueMessage.Id, processQueueMessage);
+            _subscriber.SetLogger(logFactory.CreateLog(_subscriber));
+            _subscriber.Subscribe(processQueueMessage);
 
-            _queueReader.Start();
+            _subscriber.Start();
         }
 
         public void Dispose()
         {
-            _queueReader.Dispose();
+            _subscriber.Dispose();
         }
 
         public void Stop()
         {
-            _queueReader.Stop();
+            _subscriber.Stop();
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Autofac;
-using AzureStorage.Queue;
 using Common;
+using Lykke.AzureQueueIntegration;
+using Lykke.AzureQueueIntegration.Subscriber;
 using Lykke.Common.Log;
 using Lykke.Job.OpsGenie.Contract;
 using Lykke.Job.OpsGenie.Core.Domain;
@@ -12,20 +12,24 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Queue
 {
     public class DomainRegistrationQueueReader:IStartable, IStopable
     {
-        private readonly QueueReader _queueReader;
+        private readonly AzureQueueSubscriber<AlertDomainRegistrationQueueMessage> _subscriber;
         private readonly IDomainRepository _domainRepository;
 
         public DomainRegistrationQueueReader(IReloadingManager<string> connString, 
-            ILogFactory logFactory,
-            TimeSpan timer, IDomainRepository domainRepository)
+            ILogFactory logFactory, 
+            IDomainRepository domainRepository)
         {
             _domainRepository = domainRepository;
-            _queueReader = new QueueReader(AzureQueueExt.Create(connString, QueueNames.DomainRegistrationQueue),
-                "DomainQueueRegistration",
-                timer, 
-                logFactory);
 
-            _queueReader.RegisterHandler(AlertDomainRegistrationQueueMessage.Id, ProcessQueueMessage);
+            _subscriber = new AzureQueueSubscriber<AlertDomainRegistrationQueueMessage>(
+                nameof(DomainRegistrationQueueReader),
+                new AzureQueueSettings
+                {
+                    ConnectionString = connString.CurrentValue
+                });
+
+            _subscriber.SetLogger(logFactory.CreateLog(_subscriber));
+            _subscriber.Subscribe(ProcessQueueMessage);
         }
 
 
@@ -36,17 +40,17 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Queue
 
         public void Start()
         {
-            _queueReader.Start();
+            _subscriber.Start();
         }
 
         public void Dispose()
         {
-            _queueReader.Dispose();
+            _subscriber.Dispose();
         }
 
         public void Stop()
         {
-            _queueReader.Stop();
+            _subscriber.Stop();
         }
     }
 }
