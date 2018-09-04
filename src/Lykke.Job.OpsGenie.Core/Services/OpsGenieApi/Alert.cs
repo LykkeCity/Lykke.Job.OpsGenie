@@ -28,6 +28,8 @@ namespace Lykke.Job.OpsGenie.Core.Services.OpsGenieApi
 
         public string User { get; set; }
 
+        public string Source { get; set; }
+
         public IDictionary<string, object> Details { get; set; }
     }
 }

@@ -6,12 +6,8 @@ using Common.Log;
 using Lykke.Common.Log;
 using Lykke.Job.OpsGenie.Core.Services;
 
-namespace Lykke.Job.OpsGenie.Services
+namespace Lykke.Job.OpsGenie.LifeTime
 {
-    // NOTE: Sometimes, shutdown process should be expressed explicitly. 
-    // If this is your case, use this class to manage shutdown.
-    // For example, sometimes some state should be saved only after all incoming message processing and 
-    // all periodical handler was stopped, and so on.
     public class ShutdownManager : IShutdownManager
     {
         private readonly ILog _log;
@@ -41,4 +37,5 @@ namespace Lykke.Job.OpsGenie.Services
             await Task.CompletedTask;
         }
     }
+
 }

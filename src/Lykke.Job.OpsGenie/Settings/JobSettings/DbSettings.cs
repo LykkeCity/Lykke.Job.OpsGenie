@@ -6,5 +6,8 @@ namespace Lykke.Job.OpsGenie.Settings.JobSettings
     {
         [AzureTableCheck]
         public string LogsConnString { get; set; }
+
+        [AzureTableCheck]
+        public string DataConnString { get; set; }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Lykke.Job.OpsGenie.Contract
 {
     public class AlertQueueMessage
     {
+        public const string Id = "AlertQueueMessage";
+
         public Guid AlertId { get; set; }
 
         public string Message { get; set; }

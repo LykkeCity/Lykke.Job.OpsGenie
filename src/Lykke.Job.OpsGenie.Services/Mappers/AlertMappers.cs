@@ -15,13 +15,14 @@ namespace Lykke.Job.OpsGenie.Services.Mappers
             return new Alert
             {
                 Actions = alert.Actions,
-                User = $"{alert.AlertId}:{alert.Version}-{alert.EnvInfo}",
+                Source = $"{alert.AppName}:{alert.Version}-{alert.EnvInfo}",
                 Alias = alert.AlertId.ToString(),
                 Tags = alert.Tags,
                 Message = alert.Message,
                 Description = alert.Description,
                 Details = alert.Details,
-                Entity = alert.Domain
+                Entity = alert.Domain,
+                User = alert.AppName
             };
         }
 
@@ -36,7 +37,8 @@ namespace Lykke.Job.OpsGenie.Services.Mappers
                 Entity = alert.Entity,
                 Message = alert.Message,
                 Tags = alert.Tags,
-                User = alert.User
+                User = alert.User,
+                Source = alert.Source
             };
         }
     }

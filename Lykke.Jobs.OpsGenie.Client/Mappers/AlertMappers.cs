@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Lykke.Job.OpsGenie.Contract;
 using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Lykke.Jobs.OpsGenie.Client.Mappers
 {
-    public static class AllertMappers
+    public static class AlertMappers
     {
         public static AlertQueueMessage MapToAlertQueueMessage(this Alert alert, string domain)
         {

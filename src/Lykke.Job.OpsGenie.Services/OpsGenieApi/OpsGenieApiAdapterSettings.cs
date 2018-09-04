@@ -8,5 +8,7 @@ namespace Lykke.Job.OpsGenie.Services.OpsGenieApi
     {
         public string ApiUrl => "https://api.opsgenie.com/";
         public string ApiKey { get; set; }
+
+        public string Domain { get; set; }
     }
 }
