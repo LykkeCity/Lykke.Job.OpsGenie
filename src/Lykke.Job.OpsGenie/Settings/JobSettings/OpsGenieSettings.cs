@@ -7,7 +7,7 @@ namespace Lykke.Job.OpsGenie.Settings.JobSettings
     {
         public DbSettings Db { get; set; }
 
-        public OpsGenieDomain DefaultDomain { get; set; }
+        public string DefaultDomainApiKey { get; set; }
         
         [Optional]
         public IEnumerable<OpsGenieDomain> SpecificDomains { get; set; } = new List<OpsGenieDomain>();

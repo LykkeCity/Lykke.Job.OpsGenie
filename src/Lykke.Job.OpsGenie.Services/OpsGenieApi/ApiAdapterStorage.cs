@@ -10,10 +10,10 @@ namespace Lykke.Job.OpsGenie.Services.OpsGenieApi
         private readonly IReadOnlyDictionary<string, IOpsGenieApiAdapter> _adapters;
         private readonly IOpsGenieApiAdapter _defaultApiAdapter;
 
-        public ApiAdapterStorage(IEnumerable<OpsGenieApiAdapterSettings> adapterSettingses, 
-            IOpsGenieApiAdapter defaultApiAdapter)
+        public ApiAdapterStorage(IEnumerable<OpsGenieApiAdapterSettings> adapterSettingses,
+            OpsGenieApiAdapterSettings defaultAdapterSettings)
         {
-            _defaultApiAdapter = defaultApiAdapter;
+            _defaultApiAdapter = CreateApiAdapter(defaultAdapterSettings);
             _adapters = adapterSettingses.ToDictionary(p => p.Domain, CreateApiAdapter);
         }
 

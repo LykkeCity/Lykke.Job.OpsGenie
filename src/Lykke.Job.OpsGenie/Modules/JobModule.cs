@@ -23,14 +23,12 @@ namespace Lykke.Job.OpsGenie.Modules
     {
         private readonly OpsGenieSettings _settings;
         private readonly IReloadingManager<OpsGenieSettings> _settingsManager;
-        private readonly IServiceCollection _services;
 
         public JobModule(OpsGenieSettings settings, IReloadingManager<OpsGenieSettings> settingsManager)
         {
             _settings = settings;
             _settingsManager = settingsManager;
 
-            _services = new ServiceCollection();
         }
 
         protected override void Load(ContainerBuilder builder)
@@ -54,6 +52,7 @@ namespace Lykke.Job.OpsGenie.Modules
                 .SingleInstance();
 
             builder.RegisterType<DomainQueueReaderFactory>()
+                .WithParameter(TypedParameter.From(_settingsManager.Nested(p=>p.Db.DataConnString)))
                 .As<IDomainQueueReaderFactory>()
                 .SingleInstance();
 
@@ -62,8 +61,10 @@ namespace Lykke.Job.OpsGenie.Modules
                     _settings.SpecificDomains
                         .Select(p => p.ToApiAdapterSettings())))
 
-                .WithParameter(TypedParameter.From(
-                    _settings.DefaultDomain.ToApiAdapterSettings()))
+                .WithParameter(TypedParameter.From(new OpsGenieApiAdapterSettings
+                {
+                    ApiKey = _settings.DefaultDomainApiKey
+                }))
                 .As<IApiAdapterStorage>()
                 .SingleInstance();
 
@@ -72,6 +73,7 @@ namespace Lykke.Job.OpsGenie.Modules
                 .SingleInstance();
 
             builder.RegisterType<DomainRegistrationQueueReader>()
+                .WithParameter(TypedParameter.From(_settingsManager.Nested(p=>p.Db.DataConnString)))
                 .AsSelf()
                 .AutoActivate()
                 .SingleInstance();
@@ -85,9 +87,6 @@ namespace Lykke.Job.OpsGenie.Modules
                 .AsSelf()
                 .SingleInstance();
 
-
-            
-            builder.Populate(_services);
         }
     }
 }
