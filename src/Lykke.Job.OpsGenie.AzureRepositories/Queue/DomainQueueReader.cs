@@ -25,7 +25,9 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Queue
 
             _subscriber.SetLogger(logFactory.CreateLog(_subscriber));
             _subscriber.Subscribe(processQueueMessage);
+            _subscriber.SetDeserializer(new OpsGenieDeserializer<AlertQueueMessage>());
 
+            logFactory.CreateLog(this).Info($"Registered domain queue for {domain}");
             _subscriber.Start();
         }
 

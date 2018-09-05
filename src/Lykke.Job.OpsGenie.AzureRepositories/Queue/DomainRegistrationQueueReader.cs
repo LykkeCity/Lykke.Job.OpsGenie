@@ -25,14 +25,16 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Queue
                 nameof(DomainRegistrationQueueReader),
                 new AzureQueueSettings
                 {
-                    ConnectionString = connString.CurrentValue
+                    ConnectionString = connString.CurrentValue,
+                    QueueName = OpsGenieQueueNames.DomainRegistrationQueueName
                 });
+
 
             _subscriber.SetLogger(logFactory.CreateLog(_subscriber));
             _subscriber.Subscribe(ProcessQueueMessage);
+            _subscriber.SetDeserializer(new OpsGenieDeserializer<AlertDomainRegistrationQueueMessage>());
         }
-
-
+        
         private async Task ProcessQueueMessage(AlertDomainRegistrationQueueMessage message)
         {
             await _domainRepository.InsertOrReplace(message.Domain);

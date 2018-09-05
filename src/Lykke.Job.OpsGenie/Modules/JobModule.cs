@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
+using Common;
 using Lykke.Common.Log;
 using Lykke.Job.OpsGenie.AzureRepositories;
 using Lykke.Job.OpsGenie.AzureRepositories.Queue;
@@ -15,7 +15,6 @@ using Lykke.Job.OpsGenie.Services.OpsGenieApi;
 using Lykke.Job.OpsGenie.Services.QueueReader;
 using Lykke.Job.OpsGenie.Settings.JobSettings;
 using Lykke.SettingsReader;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Lykke.Job.OpsGenie.Modules
 {
@@ -28,7 +27,6 @@ namespace Lykke.Job.OpsGenie.Modules
         {
             _settings = settings;
             _settingsManager = settingsManager;
-
         }
 
         protected override void Load(ContainerBuilder builder)
@@ -70,17 +68,18 @@ namespace Lykke.Job.OpsGenie.Modules
 
             builder.RegisterType<DomainQueueReaderHost>()
                 .As<IDomainQueueReaderHost>()
+                .As<IStopable>()
                 .SingleInstance();
 
             builder.RegisterType<DomainRegistrationQueueReader>()
                 .WithParameter(TypedParameter.From(_settingsManager.Nested(p=>p.Db.DataConnString)))
-                .AsSelf()
-                .AutoActivate()
+                .As<IStartable>()
+                .As<IStopable>()
                 .SingleInstance();
 
             builder.RegisterType<PeriodicalHandlerHost>()
-                .AsSelf()
-                .AutoActivate()
+                .As<IStartable>()
+                .As<IStopable>()
                 .SingleInstance();
 
             builder.RegisterType<DomainQueueFunctions>()

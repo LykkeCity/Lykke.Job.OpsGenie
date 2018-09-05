@@ -11,10 +11,11 @@ namespace Lykke.Jobs.OpsGenie.Client
     {
         private readonly AzureQueuePublisher<AlertQueueMessage> _alertPublisher;
         private readonly AzureQueuePublisher<AlertDomainRegistrationQueueMessage> _domainRegistrationPublisher;
+        private bool _started;
 
         private readonly string _domain;
 
-        public OpsGenieClient(OpsGenieClientSetting setting,
+        public OpsGenieClient(OpsGenieClientOptions options,
             ILogFactory logFactory)
         {
             _alertPublisher = new AzureQueuePublisher<AlertQueueMessage>(logFactory, 
@@ -22,8 +23,8 @@ namespace Lykke.Jobs.OpsGenie.Client
                 publisherName: $"AlertQueueMessagePublisher-{_domain}", 
                 settings: new AzureQueueSettings
                 {
-                    ConnectionString = setting.ConnString,
-                    QueueName = OpsGenieQueueNames.GenerateAlertMessageQueueName(setting.Domain) 
+                    ConnectionString = options.ConnString,
+                    QueueName = OpsGenieQueueNames.GenerateAlertMessageQueueName(options.Domain) 
                 });
 
             _domainRegistrationPublisher = new AzureQueuePublisher<AlertDomainRegistrationQueueMessage>(logFactory,
@@ -31,26 +32,33 @@ namespace Lykke.Jobs.OpsGenie.Client
                 publisherName: $"AlertDomainRegistrationQueueMessagePublisher-{_domain}",
                 settings: new AzureQueueSettings
                 {
-                    ConnectionString = setting.ConnString,
+                    ConnectionString = options.ConnString,
                     QueueName = OpsGenieQueueNames.DomainRegistrationQueueName
                 });
 
-            _domain = setting.Domain;
+            _domain = options.Domain;
         }
 
-        public Task CreateAlert(Alert alert)
+        public async Task CreateAlert(Alert alert)
         {
-            return _alertPublisher.ProduceAsync(alert.MapToAlertQueueMessage(_domain));
+            Start();
+
+            await _alertPublisher.ProduceAsync(alert.MapToAlertQueueMessage(_domain));
         }
 
         public void Start()
         {
-            _domainRegistrationPublisher.Start();
-            _alertPublisher.Start();
+            if (!_started)
+            {
+                _domainRegistrationPublisher.Start();
+                _alertPublisher.Start();
 
-            //fire n forget
-            _domainRegistrationPublisher.
-                ProduceAsync(new AlertDomainRegistrationQueueMessage {Domain = _domain});
+                //fire n forget
+                _domainRegistrationPublisher.
+                    ProduceAsync(new AlertDomainRegistrationQueueMessage { Domain = _domain });
+
+                _started = true;
+            }
         }
 
         public void Dispose()

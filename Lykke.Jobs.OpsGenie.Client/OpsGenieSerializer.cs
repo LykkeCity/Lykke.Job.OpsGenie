@@ -4,7 +4,7 @@ using Lykke.AzureQueueIntegration.Publisher;
 
 namespace Lykke.Jobs.OpsGenie.Client
 {
-    public class OpsGenieSerializer<T> : IAzureQueueSerializer<T>
+    internal class OpsGenieSerializer<T> : IAzureQueueSerializer<T>
     {
         private const int MaxQueueMessageBase64Size = 49152;
 
