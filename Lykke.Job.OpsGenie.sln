@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Job.OpsGenie.Contract
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Jobs.OpsGenie.Client", "Lykke.Jobs.OpsGenie.Client\Lykke.Jobs.OpsGenie.Client.csproj", "{7C75D027-C832-4B51-B658-26BBF9CB1242}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.OpsGenieClienExample", "src\Lykke.Service.OpsGenieClienExample\Lykke.Service.OpsGenieClienExample.csproj", "{59D23D25-3E8A-4381-9E9B-F90E89F39FAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.OpsGenieClientExample", "src\Lykke.Service.OpsGenieClienExample\Lykke.Service.OpsGenieClientExample.csproj", "{59D23D25-3E8A-4381-9E9B-F90E89F39FAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lykke.Job.OpsGenie.Common", "Lykke.Job.OpsGenie.Common\Lykke.Job.OpsGenie.Common.csproj", "{050EC5EB-FBC3-469C-A624-9BDF9D0F925D}"
 EndProject
