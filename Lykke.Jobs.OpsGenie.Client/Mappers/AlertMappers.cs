@@ -4,7 +4,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Lykke.Jobs.OpsGenie.Client.Mappers
 {
-    public static class AlertMappers
+    internal static class AlertMappers
     {
         public static AlertQueueMessage MapToAlertQueueMessage(this Alert alert, string domain)
         {

@@ -19,7 +19,8 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Queue
                 $"DomainQueueReader-{domain}",
                 new AzureQueueSettings
                 {
-                    ConnectionString = connString.CurrentValue
+                    ConnectionString = connString.CurrentValue,
+                    QueueName = OpsGenieQueueNames.GenerateAlertMessageQueueName(domain)
                 });
 
             _subscriber.SetLogger(logFactory.CreateLog(_subscriber));
