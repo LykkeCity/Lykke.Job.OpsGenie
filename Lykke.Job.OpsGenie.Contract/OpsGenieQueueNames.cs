@@ -13,7 +13,7 @@ namespace Lykke.Job.OpsGenie.Contract
                 throw new ArgumentNullException(nameof(domain));
             }
 
-            return $"{AlertMessagePrefix}-{domain.ToLowerInvariant().Trim().Replace(" ", "-")}";
+            return $"{AlertMessagePrefix}-{domain.ToLowerInvariant().Trim().Replace(" ", "").Replace("-","")}";
         }
 
         public const string DomainRegistrationQueueName = "ops-genie-domain-registration";
