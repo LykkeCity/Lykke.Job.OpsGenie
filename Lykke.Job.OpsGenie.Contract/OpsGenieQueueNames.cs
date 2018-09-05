@@ -1,4 +1,6 @@
-﻿namespace Lykke.Job.OpsGenie.Contract
+﻿using System;
+
+namespace Lykke.Job.OpsGenie.Contract
 {
     public static class OpsGenieQueueNames
     {
@@ -6,8 +8,12 @@
 
         public static string GenerateAlertMessageQueueName(string domain)
         {
-            //TODO fix invalid resulting queue names
-            return $"{AlertMessagePrefix}-{domain}";
+            if (string.IsNullOrEmpty(domain))
+            {
+                throw new ArgumentNullException(nameof(domain));
+            }
+
+            return $"{AlertMessagePrefix}-{domain.ToLowerInvariant().Trim().Replace(" ", "-")}";
         }
 
         public const string DomainRegistrationQueueName = "ops-genie-domain-registration";

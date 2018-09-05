@@ -1,31 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
-using Microsoft.Extensions.PlatformAbstractions;
 
-namespace Lykke.Jobs.OpsGenie.Client
+namespace Lykke.Service.OpsGenieClienExample.Request
 {
-    public class Alert
-    {
-        public Alert(Guid alertId, string message)
-        {
-
-            AlertId = alertId;
-            Message = message;
-
-            Actions = new List<string>();
-            Tags = new List<string>();
-        }
-
+    public class AlertRequest
+    {   
         /// <summary>
         /// Unique id used to deduplicate message
         /// </summary>
-        public Guid AlertId { get; }
+        [Required]
+        public Guid AlertId { get; set; }
 
         /// <summary>
         /// Message of the alert
         /// </summary>
-        public string Message { get; }
+        [Required]
+        public string Message { get; set; }
 
         /// <summary>
         /// Description field of the alert that is generally used to provide a detailed information about the alert.

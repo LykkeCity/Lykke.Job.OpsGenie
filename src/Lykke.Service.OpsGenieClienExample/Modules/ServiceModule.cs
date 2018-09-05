@@ -18,7 +18,7 @@ namespace Lykke.Service.OpsGenieClienExample.Modules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<OpsGenieClient>()
-                .WithParameter(TypedParameter.From(new OpsGenieClientOptions(domain: "some-domain", 
+                .WithParameter(TypedParameter.From(new OpsGenieClientOptions(domain: "BIL", 
                     connString: _appSettings.CurrentValue.OpsGenieClient.ConnString)))
                 .As<IOpsGenieClient>()
                 .As<IStartable>()
