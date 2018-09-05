@@ -17,7 +17,7 @@ namespace Lykke.Service.OpsGenieClienExample
     {
         private readonly LykkeSwaggerOptions _swaggerOptions = new LykkeSwaggerOptions
         {
-            ApiTitle = "OpsGenieClienExample API",
+            ApiTitle = "OpsGenieClientExample API",
             ApiVersion = "v1"
         };
 
@@ -31,7 +31,7 @@ namespace Lykke.Service.OpsGenieClienExample
                 options.Logs = logs =>
                 {
                     //logs.UseEmptyLogging();
-                    logs.AzureTableName = "OpsGenieClienExampleLog";
+                    logs.AzureTableName = "OpsGenieClientExampleLog";
                     logs.AzureTableConnectionStringResolver = settings => settings.OpsGenieClienExampleService.Db.LogsConnString;
 
                     // TODO: You could add extended logging configuration here:
