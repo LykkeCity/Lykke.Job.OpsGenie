@@ -30,9 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Client", "4. Client", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Job.OpsGenie.Contract", "client\Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj", "{F5711EFA-1A8E-4776-9E7F-C7E88F978495}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Jobs.OpsGenie.Client", "client\Lykke.Jobs.OpsGenie.Client\Lykke.Jobs.OpsGenie.Client.csproj", "{7C75D027-C832-4B51-B658-26BBF9CB1242}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.OpsGenieClientExample", "src\Lykke.Service.OpsGenieClientExample\Lykke.Service.OpsGenieClientExample.csproj", "{59D23D25-3E8A-4381-9E9B-F90E89F39FAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.OpsGenie.Client", "client\Lykke.OpsGenie.Client\Lykke.OpsGenie.Client.csproj", "{1F81B2DD-93FE-4A27-80AA-077017C222F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,14 +64,14 @@ Global
 		{F5711EFA-1A8E-4776-9E7F-C7E88F978495}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5711EFA-1A8E-4776-9E7F-C7E88F978495}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5711EFA-1A8E-4776-9E7F-C7E88F978495}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C75D027-C832-4B51-B658-26BBF9CB1242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C75D027-C832-4B51-B658-26BBF9CB1242}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C75D027-C832-4B51-B658-26BBF9CB1242}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C75D027-C832-4B51-B658-26BBF9CB1242}.Release|Any CPU.Build.0 = Release|Any CPU
 		{59D23D25-3E8A-4381-9E9B-F90E89F39FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{59D23D25-3E8A-4381-9E9B-F90E89F39FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59D23D25-3E8A-4381-9E9B-F90E89F39FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59D23D25-3E8A-4381-9E9B-F90E89F39FAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F81B2DD-93FE-4A27-80AA-077017C222F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F81B2DD-93FE-4A27-80AA-077017C222F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F81B2DD-93FE-4A27-80AA-077017C222F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F81B2DD-93FE-4A27-80AA-077017C222F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,7 +82,6 @@ Global
 		{1322B569-1032-4276-B86E-69F8BE3DC1F7} = {AA5ECC48-14C3-4BE7-AF0C-D59FCA2742C2}
 		{AAC9F450-14D7-4482-BC12-7C55006864E2} = {AB790991-CEB2-44A5-9C0C-A2D26DB86D41}
 		{F5711EFA-1A8E-4776-9E7F-C7E88F978495} = {D7826136-4466-4573-874B-FCC87C87F3DC}
-		{7C75D027-C832-4B51-B658-26BBF9CB1242} = {D7826136-4466-4573-874B-FCC87C87F3DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2419990-C093-4EE2-AFE9-80857ECBB147}
