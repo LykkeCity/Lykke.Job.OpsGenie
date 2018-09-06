@@ -1,6 +1,9 @@
 # Lykke.Job.OpsGenie
 OpsGenie (https://www.opsgenie.com/)  service external adapter, created for usage in Lykke infrastructure
 
+## Ops Genie Documentation
+https://docs.opsgenie.com/docs/alerts-page
+
 ## What this service is inteded for
 Service provide  api to interact with OpsGenie api in queue based manner
 
