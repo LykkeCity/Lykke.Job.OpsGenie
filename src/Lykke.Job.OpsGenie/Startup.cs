@@ -146,7 +146,7 @@ namespace Lykke.Job.OpsGenie
                 await ApplicationContainer.Resolve<IStartupManager>().StartAsync();
                 _healthNotifier.Notify("Started", Program.EnvInfo);
 
-#if !DEBUG
+#if DEBUG
                 await Configuration.RegisterInMonitoringServiceAsync(_monitoringServiceUrl, _healthNotifier);
 #endif
             }

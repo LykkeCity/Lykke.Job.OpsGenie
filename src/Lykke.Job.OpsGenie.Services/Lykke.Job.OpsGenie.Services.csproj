@@ -7,7 +7,6 @@
     <PackageReference Include="Flurl.Http" Version="2.3.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj" />
     <ProjectReference Include="..\Lykke.Job.OpsGenie.AzureRepositories\Lykke.Job.OpsGenie.AzureRepositories.csproj" />
     <ProjectReference Include="..\Lykke.Job.OpsGenie.Core\Lykke.Job.OpsGenie.Core.csproj" />
   </ItemGroup>

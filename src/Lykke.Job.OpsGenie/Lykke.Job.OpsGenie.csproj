@@ -29,7 +29,7 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj" />
+    <ProjectReference Include="..\..\client\Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj" />
     <ProjectReference Include="..\Lykke.Job.OpsGenie.AzureRepositories\Lykke.Job.OpsGenie.AzureRepositories.csproj" />
     <ProjectReference Include="..\Lykke.Job.OpsGenie.Core\Lykke.Job.OpsGenie.Core.csproj" />
     <ProjectReference Include="..\Lykke.Job.OpsGenie.Services\Lykke.Job.OpsGenie.Services.csproj" />

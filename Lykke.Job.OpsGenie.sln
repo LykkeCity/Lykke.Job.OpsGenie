@@ -28,9 +28,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Solution items", "0. Sol
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Client", "4. Client", "{D7826136-4466-4573-874B-FCC87C87F3DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Job.OpsGenie.Contract", "Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj", "{F5711EFA-1A8E-4776-9E7F-C7E88F978495}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Job.OpsGenie.Contract", "client\Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj", "{F5711EFA-1A8E-4776-9E7F-C7E88F978495}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Jobs.OpsGenie.Client", "Lykke.Jobs.OpsGenie.Client\Lykke.Jobs.OpsGenie.Client.csproj", "{7C75D027-C832-4B51-B658-26BBF9CB1242}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Jobs.OpsGenie.Client", "client\Lykke.Jobs.OpsGenie.Client\Lykke.Jobs.OpsGenie.Client.csproj", "{7C75D027-C832-4B51-B658-26BBF9CB1242}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Service.OpsGenieClientExample", "src\Lykke.Service.OpsGenieClientExample\Lykke.Service.OpsGenieClientExample.csproj", "{59D23D25-3E8A-4381-9E9B-F90E89F39FAC}"
 EndProject
