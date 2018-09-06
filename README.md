@@ -1,2 +1,16 @@
 # Lykke.Job.OpsGenie
-OpsGenie external Service Integration
+OpsGenie (https://www.opsgenie.com/)  service external adapter, created for usage in Lykke infrastructure
+
+## What this service is inteded for
+Service provide  api to interact with OpsGenie api in queue based manner
+
+## How to use the service
+
+Include  https://www.nuget.org/packages/Lykke.OpsGenie.Client/ in your project nuget package.
+### Example usages:
+- https://github.com/LykkeCity/Lykke.Job.OpsGenie/blob/dev/src/Lykke.Service.OpsGenieClientExample/Modules/ServiceModule.cs#L20 - client registration
+- https://github.com/LykkeCity/Lykke.Job.OpsGenie/blob/dev/src/Lykke.Service.OpsGenieClientExample/Controllers/AlertController.cs#L31 client usage
+
+## Lykke.Job.OpsGenie Configuration
+
+TBD
