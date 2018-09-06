@@ -13,7 +13,7 @@ namespace Lykke.Job.OpsGenie.Services.QueueReader
         public DomainQueueReaderHost(IDomainQueueReaderFactory factory)
         {
             _factory = factory;
-            _queueReaders = new ConcurrentDictionary<string, Lazy<IDomainQueueReader>>();
+            _queueReaders = new ConcurrentDictionary<string, Lazy<IDomainQueueReader>>(StringComparer.InvariantCultureIgnoreCase);
         }
         
         public void StartQueueReaderIfNotStarted(string domain)
