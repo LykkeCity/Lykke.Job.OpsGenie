@@ -37,7 +37,7 @@ namespace Lykke.Job.OpsGenie.Services.QueueReader
             }
             catch (Exception e)
             {
-                _logFactory.CreateLog(apiAdapter).Error(e);
+                _logFactory.CreateLog(apiAdapter).Error(e, context: queueMessage);
             }
         }
     }
