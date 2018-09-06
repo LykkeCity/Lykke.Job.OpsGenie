@@ -33,7 +33,7 @@ namespace Lykke.Job.OpsGenie.Services.OpsGenieApi.Contracts
         public string Source { get; set; }
 
 
-        [JsonProperty("source")]
+        [JsonProperty("priority")]
         public string Priority { get; set; }
 
         //[JsonProperty("note")]
