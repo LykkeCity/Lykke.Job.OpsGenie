@@ -6,7 +6,7 @@ namespace Lykke.Jobs.OpsGenie.Client.Mappers
 {
     internal static class AlertMappers
     {
-        public static AlertQueueMessage MapToAlertQueueMessage(this Alert alert, string domain)
+        public static AlertQueueMessage MapToQueueMessage(this Alert alert, string domain)
         {
             return new AlertQueueMessage
             {

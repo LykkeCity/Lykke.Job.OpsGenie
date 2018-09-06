@@ -43,7 +43,7 @@ namespace Lykke.Jobs.OpsGenie.Client
         {
             Start();
 
-            await _alertPublisher.ProduceAsync(alert.MapToAlertQueueMessage(_domain));
+            await _alertPublisher.ProduceAsync(alert.MapToQueueMessage(_domain));
         }
 
         public void Start()
