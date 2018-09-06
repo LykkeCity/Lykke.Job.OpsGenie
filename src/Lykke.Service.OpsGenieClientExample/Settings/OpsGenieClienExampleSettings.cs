@@ -7,5 +7,7 @@ namespace Lykke.Service.OpsGenieClienExample.Settings
     public class OpsGenieClienExampleSettings
     {
         public DbSettings Db { get; set; }
+
+        public string Domain { get; set; }
     }
 }
