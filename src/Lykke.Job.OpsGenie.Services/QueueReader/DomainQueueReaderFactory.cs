@@ -31,7 +31,14 @@ namespace Lykke.Job.OpsGenie.Services.QueueReader
         {
             var apiAdapter = _apiAdapterStorage.GetOrDefault(queueMessage.Domain);
 
-            await apiAdapter.CreateAlert(queueMessage.MapFromAlertQueueMessage());
+            try
+            {
+                await apiAdapter.CreateAlert(queueMessage.MapFromAlertQueueMessage());
+            }
+            catch (Exception e)
+            {
+                _logFactory.CreateLog(apiAdapter).Error(e);
+            }
         }
     }
 }
