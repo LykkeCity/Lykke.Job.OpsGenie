@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lykke.Job.OpsGenie.Common\Lykke.Job.OpsGenie.Common.csproj" />
     <ProjectReference Include="..\Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj" />
   </ItemGroup>
 
