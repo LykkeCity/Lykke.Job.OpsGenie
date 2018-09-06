@@ -24,5 +24,16 @@ namespace Lykke.Job.OpsGenie.Contract
         public string Version { get; set; }
 
         public string AppName { get; set; }
+        
+        public PriorityLevel Priority { get; set; }
+
+        public enum PriorityLevel
+        {
+            P1,
+            P2,
+            P3,
+            P4,
+            P5
+        }
     }
 }

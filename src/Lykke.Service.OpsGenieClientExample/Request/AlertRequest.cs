@@ -38,5 +38,25 @@ namespace Lykke.Service.OpsGenieClienExample.Request
         /// Map of key-value pairs to use as custom properties of the alert.
         /// </summary>
         public IDictionary<string, object> Details { get; set; }
+
+        /// <summary>
+        /// Priority level of the alert. Possible values are P1, P2, P3, P4 and P5
+        /// </summary>
+        public PriorityLevel Priority { get; set; }
+
+        public enum PriorityLevel
+        {
+            /// <summary>
+            /// Highest
+            /// </summary>
+            P1,
+            P2,
+            P3,
+            P4,
+            /// <summary>
+            /// Highest
+            /// </summary>
+            P5
+        }
     }
 }

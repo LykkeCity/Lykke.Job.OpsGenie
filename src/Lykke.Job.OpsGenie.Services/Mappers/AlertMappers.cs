@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Common;
-using Lykke.Job.OpsGenie.Contract;
+﻿using Lykke.Job.OpsGenie.Contract;
 using Lykke.Job.OpsGenie.Core.Services.OpsGenieApi;
 using Lykke.Job.OpsGenie.Services.OpsGenieApi.Contracts;
 
@@ -22,7 +18,8 @@ namespace Lykke.Job.OpsGenie.Services.Mappers
                 Description = alert.Description,
                 Details = alert.Details,
                 Entity = alert.Domain,
-                User = alert.AppName
+                User = alert.AppName,
+                Priority = (Alert.PriorityLevel) alert.Priority
             };
         }
 
@@ -38,7 +35,8 @@ namespace Lykke.Job.OpsGenie.Services.Mappers
                 Message = alert.Message,
                 Tags = alert.Tags,
                 User = alert.User,
-                Source = alert.Source
+                Source = alert.Source,
+                Priority = alert.Priority.ToString("G")
             };
         }
     }

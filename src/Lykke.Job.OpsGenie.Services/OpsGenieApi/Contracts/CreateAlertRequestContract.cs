@@ -32,12 +32,13 @@ namespace Lykke.Job.OpsGenie.Services.OpsGenieApi.Contracts
         [JsonProperty("source")]
         public string Source { get; set; }
 
+
+        [JsonProperty("source")]
+        public string Priority { get; set; }
+
         //[JsonProperty("note")]
         //public string Note { get; set; }
 
-
-        //[JsonProperty("priority")]
-        //public string Priority { get; set; }
 
         //TODO visibleTo responders
     }

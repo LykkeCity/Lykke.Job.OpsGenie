@@ -33,7 +33,8 @@ namespace Lykke.Service.OpsGenieClienExample.Controllers
                 Actions = request.Actions,
                 Description = request.Description,
                 Details = request.Details,
-                Tags = request.Tags
+                Tags = request.Tags,
+                Priority = (Alert.PriorityLevel) request.Priority
             });
             return Ok();
         }

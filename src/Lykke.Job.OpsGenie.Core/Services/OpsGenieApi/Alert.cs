@@ -31,5 +31,16 @@ namespace Lykke.Job.OpsGenie.Core.Services.OpsGenieApi
         public string Source { get; set; }
 
         public IDictionary<string, object> Details { get; set; }
+
+        public PriorityLevel Priority { get; set; }
+
+        public enum PriorityLevel
+        {
+            P1,
+            P2,
+            P3,
+            P4,
+            P5
+        }
     }
 }
