@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Lykke.AzureQueueIntegration;
 using Lykke.AzureQueueIntegration.Publisher;
@@ -20,6 +21,8 @@ namespace Lykke.Job.OpsGenie.Client
 
         private readonly string _domain;
 
+        private Lazy<Task> _initionLocker;
+
         /// <summary>
         /// OpsGenieJobClient ctor
         /// </summary>
@@ -28,6 +31,8 @@ namespace Lykke.Job.OpsGenie.Client
         public OpsGenieJobClient(OpsGenieJobClientOptions options,
             ILogFactory logFactory)
         {
+            _domain = options.Domain;
+
             _alertPublisher = new AzureQueuePublisher<AlertQueueMessage>(logFactory, 
                 new OpsJobGenieSerializer<AlertQueueMessage>(),
                 publisherName: $"AlertQueueMessagePublisher-{_domain}", 
@@ -46,7 +51,7 @@ namespace Lykke.Job.OpsGenie.Client
                     QueueName = OpsGenieQueueNames.DomainRegistrationQueueName
                 });
 
-            _domain = options.Domain;
+            _initionLocker = new Lazy<Task>(InitInnerAsync);
         }
 
         /// <summary>
@@ -54,9 +59,14 @@ namespace Lykke.Job.OpsGenie.Client
         /// </summary>
         /// <param name="alert">Published data</param>
         /// <returns></returns>
-        public async Task CreateAlert(Alert alert)
+        public async Task RiseAlertAsync(Alert alert)
         {
-            Start();
+            if (alert == null)
+            {
+                throw new ArgumentNullException(nameof(alert));
+            }
+
+            await EnsureInitionAsync();
 
             await _alertPublisher.ProduceAsync(alert.MapToQueueMessage(_domain));
         }
@@ -66,17 +76,7 @@ namespace Lykke.Job.OpsGenie.Client
         /// </summary>
         public void Start()
         {
-            if (!_started)
-            {
-                _domainRegistrationPublisher.Start();
-                _alertPublisher.Start();
-
-                //fire n forget
-                _domainRegistrationPublisher.
-                    ProduceAsync(new AlertDomainRegistrationQueueMessage { Domain = _domain });
-
-                _started = true;
-            }
+            EnsureInitionAsync().Wait();
         }
 
         /// <summary>
@@ -95,6 +95,22 @@ namespace Lykke.Job.OpsGenie.Client
         {
             _domainRegistrationPublisher.Stop();
             _alertPublisher.Stop();
+        }
+
+        private async Task InitInnerAsync()
+        {
+            _domainRegistrationPublisher.Start();
+            _alertPublisher.Start();
+            
+            await _domainRegistrationPublisher.ProduceAsync(new AlertDomainRegistrationQueueMessage
+                {
+                    Domain = _domain
+                });
+        }
+
+        private Task EnsureInitionAsync()
+        {
+            return _initionLocker.Value;
         }
     }
 }

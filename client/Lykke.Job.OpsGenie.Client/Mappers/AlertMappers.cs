@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Lykke.Common;
 using Lykke.Job.OpsGenie.Contract;
-using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Lykke.Job.OpsGenie.Client.Mappers
 {
@@ -16,9 +15,9 @@ namespace Lykke.Job.OpsGenie.Client.Mappers
                 Tags = alert.Tags,
                 Actions = alert.Actions,
                 Details = alert.Details,
-                EnvInfo = Environment.GetEnvironmentVariable("ENV_INFO"),
-                Version = PlatformServices.Default.Application.ApplicationVersion,
-                AppName = PlatformServices.Default.Application.ApplicationName,
+                EnvInfo = AppEnvironment.EnvInfo,
+                Version = AppEnvironment.Version,
+                AppName = AppEnvironment.Name,
                 Domain = domain
             };
         }

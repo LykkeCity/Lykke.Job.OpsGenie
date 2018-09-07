@@ -16,6 +16,6 @@ namespace Lykke.Job.OpsGenie.Client
         /// </summary>
         /// <param name="alert">alert message data</param>
         /// <returns></returns>
-        Task RiseAlert(Alert alert);
+        Task RiseAlertAsync(Alert alert);
     }
 }

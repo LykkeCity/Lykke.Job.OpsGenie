@@ -27,7 +27,7 @@ namespace Lykke.Service.OpsGenieClienExample.Controllers
                 return BadRequest(ErrorResponseFactory.Create(ModelState));
             }
 
-            await _opsGenieJobClient.CreateAlert(new Alert(
+            await _opsGenieJobClient.RiseAlertAsync(new Alert(
                 request.AlertId, 
                 request.Message,
                 description: request.Description,

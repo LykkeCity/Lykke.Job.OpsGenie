@@ -1,5 +1,7 @@
-﻿using Common;
+﻿using System;
+using System.IO;
 using Lykke.AzureQueueIntegration.Subscriber;
+using ProtoBuf;
 
 namespace Lykke.Job.OpsGenie.AzureRepositories.Queue
 {
@@ -7,7 +9,10 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Queue
     {
         public T Deserialize(string data)
         {
-            return data.DeserializeJson<T>();
+            using (var stream = new MemoryStream(Convert.FromBase64String(data)))
+            {
+                return Serializer.Deserialize<T>(stream);
+            }
         }
     }
 }
