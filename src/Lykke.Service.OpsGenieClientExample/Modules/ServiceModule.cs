@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Common;
-using Lykke.Jobs.OpsGenie.Client;
+using Lykke.Job.OpsGenie.Client;
 using Lykke.Service.OpsGenieClienExample.Settings;
 using Lykke.SettingsReader;
 
