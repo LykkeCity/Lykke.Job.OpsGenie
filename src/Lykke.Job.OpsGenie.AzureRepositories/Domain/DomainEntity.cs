@@ -6,12 +6,12 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Domain
     {
         public string Domain { get; set; }
 
-        public static string GeneratePartitionKey()
+        public static string GenerateRowKey()
         {
             return "dmn";
         }
 
-        public static string GenerateRowKey(string domain)
+        public static string GeneratePartitionKey(string domain)
         {
             return domain;
         }
@@ -21,8 +21,8 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Domain
             return new DomainEntity
             {
                 Domain = domainName,
-                PartitionKey = GeneratePartitionKey(),
-                RowKey = GenerateRowKey(domainName)
+                RowKey = GenerateRowKey(),
+                PartitionKey = GeneratePartitionKey(domainName)
             };
         }
     }
