@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Lykke.AzureQueueIntegration;
 using Lykke.AzureQueueIntegration.Publisher;
 using Lykke.Common.Log;
@@ -7,7 +8,11 @@ using Lykke.Job.OpsGenie.Contract;
 
 namespace Lykke.Job.OpsGenie.Client
 {
-    public class OpsGenieClient:IOpsGenieClient
+    /// <summary>
+    /// job client
+    /// </summary>
+    [PublicAPI]
+    public class OpsGenieJobClient:IOpsGenieJobClient
     {
         private readonly AzureQueuePublisher<AlertQueueMessage> _alertPublisher;
         private readonly AzureQueuePublisher<AlertDomainRegistrationQueueMessage> _domainRegistrationPublisher;
@@ -15,11 +20,16 @@ namespace Lykke.Job.OpsGenie.Client
 
         private readonly string _domain;
 
-        public OpsGenieClient(OpsGenieClientOptions options,
+        /// <summary>
+        /// OpsGenieJobClient ctor
+        /// </summary>
+        /// <param name="options">configuration</param>
+        /// <param name="logFactory">lykke logging</param>
+        public OpsGenieJobClient(OpsGenieJobClientOptions options,
             ILogFactory logFactory)
         {
             _alertPublisher = new AzureQueuePublisher<AlertQueueMessage>(logFactory, 
-                new OpsGenieSerializer<AlertQueueMessage>(),
+                new OpsJobGenieSerializer<AlertQueueMessage>(),
                 publisherName: $"AlertQueueMessagePublisher-{_domain}", 
                 settings: new AzureQueueSettings
                 {
@@ -28,7 +38,7 @@ namespace Lykke.Job.OpsGenie.Client
                 });
 
             _domainRegistrationPublisher = new AzureQueuePublisher<AlertDomainRegistrationQueueMessage>(logFactory,
-                new OpsGenieSerializer<AlertDomainRegistrationQueueMessage>(),
+                new OpsJobGenieSerializer<AlertDomainRegistrationQueueMessage>(),
                 publisherName: $"AlertDomainRegistrationQueueMessagePublisher-{_domain}",
                 settings: new AzureQueueSettings
                 {
@@ -39,6 +49,11 @@ namespace Lykke.Job.OpsGenie.Client
             _domain = options.Domain;
         }
 
+        /// <summary>
+        /// Alert publishing
+        /// </summary>
+        /// <param name="alert">Published data</param>
+        /// <returns></returns>
         public async Task CreateAlert(Alert alert)
         {
             Start();
@@ -46,6 +61,9 @@ namespace Lykke.Job.OpsGenie.Client
             await _alertPublisher.ProduceAsync(alert.MapToQueueMessage(_domain));
         }
 
+        /// <summary>
+        /// Start client
+        /// </summary>
         public void Start()
         {
             if (!_started)
@@ -61,12 +79,18 @@ namespace Lykke.Job.OpsGenie.Client
             }
         }
 
+        /// <summary>
+        /// Dispose Client
+        /// </summary>
         public void Dispose()
         {
             _domainRegistrationPublisher.Dispose();
             _alertPublisher.Dispose();
         }
 
+        /// <summary>
+        /// Stop Client
+        /// </summary>
         public void Stop()
         {
             _domainRegistrationPublisher.Stop();

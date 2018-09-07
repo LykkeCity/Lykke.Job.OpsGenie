@@ -17,10 +17,10 @@ namespace Lykke.Service.OpsGenieClienExample.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<OpsGenieClient>()
-                .WithParameter(TypedParameter.From(new OpsGenieClientOptions(domain: _appSettings.CurrentValue.OpsGenieClienExampleService.Domain, 
+            builder.RegisterType<OpsGenieJobClient>()
+                .WithParameter(TypedParameter.From(new OpsGenieJobClientOptions(domain: _appSettings.CurrentValue.OpsGenieClienExampleService.Domain, 
                     connString: _appSettings.CurrentValue.OpsGenieClient.ConnString)))
-                .As<IOpsGenieClient>()
+                .As<IOpsGenieJobClient>()
                 .As<IStartable>()
                 .As<IStopable>()
                 .SingleInstance();

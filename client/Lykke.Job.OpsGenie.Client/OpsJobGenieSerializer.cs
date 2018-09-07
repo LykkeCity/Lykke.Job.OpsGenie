@@ -1,10 +1,9 @@
-﻿using System;
-using Common;
+﻿using Common;
 using Lykke.AzureQueueIntegration.Publisher;
 
 namespace Lykke.Job.OpsGenie.Client
 {
-    internal class OpsGenieSerializer<T> : IAzureQueueSerializer<T>
+    internal class OpsJobGenieSerializer<T> : IAzureQueueSerializer<T>
     {
         private const int MaxQueueMessageBase64Size = 49152;
 

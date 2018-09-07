@@ -1,4 +1,5 @@
 ﻿
+using System.Linq;
 using System.Threading.Tasks;
 using Lykke.Common.ApiLibrary.Contract;
 using Lykke.Job.OpsGenie.Client;
@@ -10,11 +11,11 @@ namespace Lykke.Service.OpsGenieClienExample.Controllers
 {
     public class AlertController:Controller
     {
-        private readonly IOpsGenieClient _opsGenieClient;
+        private readonly IOpsGenieJobClient _opsGenieJobClient;
 
-        public AlertController(IOpsGenieClient opsGenieClient)
+        public AlertController(IOpsGenieJobClient opsGenieJobClient)
         {
-            _opsGenieClient = opsGenieClient;
+            _opsGenieJobClient = opsGenieJobClient;
         }
 
         [SwaggerOperation()]
@@ -26,14 +27,15 @@ namespace Lykke.Service.OpsGenieClienExample.Controllers
                 return BadRequest(ErrorResponseFactory.Create(ModelState));
             }
 
-            await _opsGenieClient.CreateAlert(new Alert(request.AlertId, request.Message)
-            {
-                Actions = request.Actions,
-                Description = request.Description,
-                Details = request.Details,
-                Tags = request.Tags,
-                Priority = (Alert.PriorityLevel) request.Priority
-            });
+            await _opsGenieJobClient.CreateAlert(new Alert(
+                request.AlertId, 
+                request.Message,
+                description: request.Description,
+                actions: request.Actions.Distinct().ToHashSet(),
+                tags: request.Tags.Distinct().ToHashSet(),
+                priorityLevel: (Alert.PriorityLevel)request.Priority
+                ));
+
             return Ok();
         }
     }
