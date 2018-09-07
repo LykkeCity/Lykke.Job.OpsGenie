@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using System.Threading.Tasks;
 using Lykke.Common.ApiLibrary.Contract;
-using Lykke.Jobs.OpsGenie.Client;
+using Lykke.Job.OpsGenie.Client;
 using Lykke.Service.OpsGenieClienExample.Request;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;

@@ -1,5 +1,4 @@
 ﻿using JetBrains.Annotations;
-using Lykke.Jobs.OpsGenie.Client;
 using Lykke.Sdk.Settings;
 
 namespace Lykke.Service.OpsGenieClienExample.Settings
