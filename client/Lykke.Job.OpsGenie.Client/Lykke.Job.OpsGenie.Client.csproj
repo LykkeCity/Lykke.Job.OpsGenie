@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj" />
+    <ProjectReference Include="..\Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup Label="dotnet pack instructions">
     <Content Include="$(OutputPath)$(AssemblyName).pdb">
