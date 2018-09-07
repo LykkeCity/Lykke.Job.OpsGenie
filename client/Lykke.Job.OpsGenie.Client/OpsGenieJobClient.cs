@@ -17,7 +17,6 @@ namespace Lykke.Job.OpsGenie.Client
     {
         private readonly AzureQueuePublisher<AlertQueueMessage> _alertPublisher;
         private readonly AzureQueuePublisher<AlertDomainRegistrationQueueMessage> _domainRegistrationPublisher;
-        private bool _started;
 
         private readonly string _domain;
 
