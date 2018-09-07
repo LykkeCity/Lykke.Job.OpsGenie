@@ -33,7 +33,7 @@ namespace Lykke.Job.OpsGenie.Services.QueueReader
 
             try
             {
-                await apiAdapter.CreateAlert(queueMessage.MapFromQueueMessage());
+                await apiAdapter.RaiseAlertAsync(queueMessage.MapFromQueueMessage());
             }
             catch (Exception e)
             {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lykke.Job.OpsGenie.Core.Services.OpsGenieApi
+namespace Lykke.Job.OpsGenie.Core.Domain
 {
     public class CreateAlertResult
     {

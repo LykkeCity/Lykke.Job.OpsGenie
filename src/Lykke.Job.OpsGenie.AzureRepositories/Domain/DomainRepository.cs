@@ -14,7 +14,7 @@ namespace Lykke.Job.OpsGenie.AzureRepositories
     {
         private readonly INoSQLTableStorage<DomainEntity> _storage;
 
-        public DomainRepository(INoSQLTableStorage<DomainEntity> storage)
+        private DomainRepository(INoSQLTableStorage<DomainEntity> storage)
         {
             _storage = storage;
         }

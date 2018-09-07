@@ -56,12 +56,14 @@ namespace Lykke.Job.OpsGenie.Modules
 
             builder.RegisterType<ApiAdapterStorage>()
                 .WithParameter(TypedParameter.From(
-                    _settings.SpecificDomains
-                        .Select(p => p.ToApiAdapterSettings())))
+                    _settings.Domains
+                        .Select(p => p.ToApiAdapterSettings(_settings.ApiUrl))))
 
                 .WithParameter(TypedParameter.From(new OpsGenieApiAdapterSettings
                 {
-                    ApiKey = _settings.DefaultDomainApiKey
+                    ApiKey = _settings.DefaultDomainApiKey,
+                    Domain = "Default",
+                    ApiUrl = _settings.ApiUrl
                 }))
                 .As<IApiAdapterStorage>()
                 .SingleInstance();

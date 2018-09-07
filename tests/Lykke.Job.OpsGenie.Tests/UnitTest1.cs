@@ -16,7 +16,7 @@
 
 //            try
 //            {
-//                var notif = await adapter.CreateAlert(new Alert
+//                var notif = await adapter.RaiseAlertAsync(new Alert
 //                {
 //                    Message = "message",
 //                    Details = new Dictionary<string, object>() { { "key", "value" } },

@@ -2,7 +2,7 @@
 
 namespace Lykke.Job.OpsGenie.AzureRepositories.Domain
 {
-    public class DomainEntity:TableEntity
+    internal class DomainEntity:TableEntity
     {
         public string Domain { get; set; }
 

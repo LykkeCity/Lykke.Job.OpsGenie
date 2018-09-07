@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
+using Lykke.Job.OpsGenie.Core.Domain;
 using Lykke.Job.OpsGenie.Core.Services.OpsGenieApi;
 using Lykke.Job.OpsGenie.Services.Mappers;
 using Lykke.Job.OpsGenie.Services.OpsGenieApi.Contracts;
@@ -17,7 +18,7 @@ namespace Lykke.Job.OpsGenie.Services.OpsGenieApi
             _settings = settings;
         }
 
-        public async Task<CreateAlertResult> CreateAlert(Alert alert)
+        public async Task<CreateAlertResult> RaiseAlertAsync(Alert alert)
         {
             try
             {
@@ -34,10 +35,8 @@ namespace Lykke.Job.OpsGenie.Services.OpsGenieApi
             }
             catch (FlurlHttpException e)
             {
-                throw new OpsGenieApiAdapterException($"Error while interaction with OpsGenieApi: " +
-                                                      $"{await e.GetResponseStringAsync()}", 
-                    alert.MapToCreateAlertContract(), 
-                    e);
+                throw new OpsGenieApiAdapterException($"Error while interaction with OpsGenieApi: {alert.MapToCreateAlertContract()}" +
+                                                      $"{await e.GetResponseStringAsync()}", e);
             }
         }
     }

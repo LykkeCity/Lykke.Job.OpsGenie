@@ -1,4 +1,5 @@
 ﻿using Lykke.Job.OpsGenie.Contract;
+using Lykke.Job.OpsGenie.Core.Domain;
 using Lykke.Job.OpsGenie.Core.Services.OpsGenieApi;
 using Lykke.Job.OpsGenie.Services.OpsGenieApi.Contracts;
 
