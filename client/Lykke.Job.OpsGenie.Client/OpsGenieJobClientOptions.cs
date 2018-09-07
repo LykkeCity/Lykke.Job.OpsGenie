@@ -12,7 +12,7 @@ namespace Lykke.Job.OpsGenie.Client
         /// <summary>
         /// Configures ops genie client
         /// </summary>
-        /// <param name="domain">domain of the service - for example "BIL"</param>
+        /// <param name="domain">domain of the application - for example "BIL" for blockchain integrations</param>
         /// <param name="connString">Connection string readed from OpsGenieJobClient section in settings</param>
         public OpsGenieJobClientOptions(string domain, string connString)
         {
@@ -21,7 +21,7 @@ namespace Lykke.Job.OpsGenie.Client
         }
 
         /// <summary>
-        /// domain of the service - for example "BIL"
+        /// domain of the application - for example "BIL"
         /// </summary>
         public string Domain { get; }
 
