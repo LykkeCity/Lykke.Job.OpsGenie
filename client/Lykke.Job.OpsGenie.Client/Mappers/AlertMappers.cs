@@ -2,7 +2,7 @@
 using Lykke.Job.OpsGenie.Contract;
 using Microsoft.Extensions.PlatformAbstractions;
 
-namespace Lykke.Jobs.OpsGenie.Client.Mappers
+namespace Lykke.Job.OpsGenie.Client.Mappers
 {
     internal static class AlertMappers
     {

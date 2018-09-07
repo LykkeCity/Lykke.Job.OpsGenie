@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lykke.Jobs.OpsGenie.Client
+namespace Lykke.Job.OpsGenie.Client
 {
     public class Alert
     {

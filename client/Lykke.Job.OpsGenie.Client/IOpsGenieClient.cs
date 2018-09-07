@@ -2,7 +2,7 @@
 using Autofac;
 using Common;
 
-namespace Lykke.Jobs.OpsGenie.Client
+namespace Lykke.Job.OpsGenie.Client
 {
     public interface IOpsGenieClient : IStartable, IStopable
     {

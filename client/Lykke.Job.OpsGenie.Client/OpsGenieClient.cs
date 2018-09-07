@@ -2,10 +2,10 @@
 using Lykke.AzureQueueIntegration;
 using Lykke.AzureQueueIntegration.Publisher;
 using Lykke.Common.Log;
+using Lykke.Job.OpsGenie.Client.Mappers;
 using Lykke.Job.OpsGenie.Contract;
-using Lykke.Jobs.OpsGenie.Client.Mappers;
 
-namespace Lykke.Jobs.OpsGenie.Client
+namespace Lykke.Job.OpsGenie.Client
 {
     public class OpsGenieClient:IOpsGenieClient
     {

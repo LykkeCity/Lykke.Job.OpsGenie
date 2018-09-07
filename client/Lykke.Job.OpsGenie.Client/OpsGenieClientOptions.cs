@@ -1,9 +1,14 @@
 ﻿using System;
 
-namespace Lykke.Jobs.OpsGenie.Client
+namespace Lykke.Job.OpsGenie.Client
 {
     public class OpsGenieClientOptions
     {
+        /// <summary>
+        /// Configures ops genie client
+        /// </summary>
+        /// <param name="domain"></param>
+        /// <param name="connString">Connection string readed from OpsGenieClient section in settings</param>
         public OpsGenieClientOptions(string domain, string connString)
         {
             Domain = domain ?? throw new ArgumentNullException(nameof(domain));

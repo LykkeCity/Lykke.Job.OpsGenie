@@ -29,7 +29,8 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\client\Lykke.OpsGenie.Client\Lykke.OpsGenie.Client.csproj" />
+    <ProjectReference Include="..\..\client\Lykke.Job.OpsGenie.Client\Lykke.Job.OpsGenie.Client.csproj" />
+    <ProjectReference Include="..\..\client\Lykke.OpsGenie.Client\Lykke.Job.OpsGenie.Client.csproj" />
   </ItemGroup>
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <ItemGroup>
