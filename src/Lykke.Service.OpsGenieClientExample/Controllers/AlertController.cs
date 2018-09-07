@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Lykke.Common.ApiLibrary.Contract;
@@ -27,14 +28,23 @@ namespace Lykke.Service.OpsGenieClienExample.Controllers
                 return BadRequest(ErrorResponseFactory.Create(ModelState));
             }
 
-            await _opsGenieJobClient.RiseAlertAsync(new Alert(
-                request.AlertId, 
-                request.Message,
-                description: request.Description,
-                actions: request.Actions.Distinct().ToHashSet(),
-                tags: request.Tags.Distinct().ToHashSet(),
-                priorityLevel: (Alert.PriorityLevel)request.Priority
+            try
+            {
+                await _opsGenieJobClient.RiseAlertAsync(new Alert(
+                    request.AlertId,
+                    request.Message,
+                    description: request.Description,
+                    actions: request.Actions?.Distinct().ToHashSet(),
+                    tags: request.Tags?.Distinct().ToHashSet(),
+                    priorityLevel: (Alert.PriorityLevel)request.Priority
                 ));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
 
             return Ok();
         }
