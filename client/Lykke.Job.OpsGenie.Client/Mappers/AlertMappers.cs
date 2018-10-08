@@ -18,7 +18,8 @@ namespace Lykke.Job.OpsGenie.Client.Mappers
                 EnvInfo = AppEnvironment.EnvInfo,
                 Version = AppEnvironment.Version,
                 AppName = AppEnvironment.Name,
-                Domain = domain
+                Domain = domain,
+                Priority =  (AlertQueueMessage.PriorityLevel)alert.Priority
             };
         }
     }
