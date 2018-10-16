@@ -52,7 +52,7 @@ namespace Lykke.Job.OpsGenie.Contract
         /// Map of key-value pairs to use as custom properties of the alert.
         /// </summary>
         [ProtoMember(7)]
-        public IDictionary<string, object> Details { get; set; }
+        public IReadOnlyDictionary<string, object> Details { get; set; }
 
         /// <summary>
         /// Application sender environment info

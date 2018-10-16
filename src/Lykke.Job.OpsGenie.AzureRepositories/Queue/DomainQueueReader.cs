@@ -22,12 +22,23 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Queue
                     ConnectionString = connString.CurrentValue,
                     QueueName = OpsGenieQueueNames.GenerateAlertMessageQueueName(domain)
                 });
-
+            var log = logFactory.CreateLog(this);
             _subscriber.SetLogger(logFactory.CreateLog(_subscriber));
-            _subscriber.Subscribe(processQueueMessage);
+            _subscriber.Subscribe(async arg =>
+            {
+                try
+                {
+                    await processQueueMessage(arg);
+                }
+                catch (Exception e)
+                {
+
+                    log.Error(e, context: arg);
+                }
+            });
             _subscriber.SetDeserializer(new OpsGenieDeserializer<AlertQueueMessage>());
 
-            logFactory.CreateLog(this).Info($"Registered domain queue for {domain}");
+            log.Info($"Registered domain queue for {domain}");
             _subscriber.Start();
         }
 

@@ -5,7 +5,7 @@ OpsGenie (https://www.opsgenie.com/)  service external adapter, created for usag
 https://docs.opsgenie.com/docs/alerts-page
 
 ## What this service is inteded for
-Service provide  api to interact with OpsGenie api in queue based manner
+Service provide the messaging based API atop of OpsGenie API
 
 ## How to use the service
 

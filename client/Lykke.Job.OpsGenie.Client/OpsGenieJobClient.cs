@@ -13,7 +13,7 @@ namespace Lykke.Job.OpsGenie.Client
     /// job client
     /// </summary>
     [PublicAPI]
-    public class OpsGenieJobClient:IOpsGenieJobClient
+    public class OpsGenieJobClient : IOpsGenieJobClient
     {
         private readonly AzureQueuePublisher<AlertQueueMessage> _alertPublisher;
         private readonly AzureQueuePublisher<AlertDomainRegistrationQueueMessage> _domainRegistrationPublisher;

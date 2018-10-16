@@ -4,11 +4,10 @@ using System.Threading.Tasks;
 using AzureStorage;
 using AzureStorage.Tables;
 using Lykke.Common.Log;
-using Lykke.Job.OpsGenie.AzureRepositories.Domain;
 using Lykke.Job.OpsGenie.Core.Domain;
 using Lykke.SettingsReader;
 
-namespace Lykke.Job.OpsGenie.AzureRepositories
+namespace Lykke.Job.OpsGenie.AzureRepositories.Domain
 {
     public class DomainRepository: IDomainRepository
     {

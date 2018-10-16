@@ -8,7 +8,7 @@ namespace Lykke.Job.OpsGenie.AzureRepositories.Domain
 
         public static string GenerateRowKey()
         {
-            return "dmn";
+            return "-";
         }
 
         public static string GeneratePartitionKey(string domain)

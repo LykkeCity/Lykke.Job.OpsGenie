@@ -29,16 +29,7 @@ namespace Lykke.Job.OpsGenie.Services.QueueReader
 
         private async Task ProcessQueueMessage(AlertQueueMessage queueMessage)
         {
-            var apiAdapter = _apiAdapterStorage.GetOrDefault(queueMessage.Domain);
-
-            try
-            {
-                await apiAdapter.RaiseAlertAsync(queueMessage.MapFromQueueMessage());
-            }
-            catch (Exception e)
-            {
-                _logFactory.CreateLog(apiAdapter).Error(e, context: queueMessage);
-            }
+            await _apiAdapterStorage.GetOrDefault(queueMessage.Domain).RaiseAlertAsync(queueMessage.MapFromQueueMessage());
         }
     }
 }

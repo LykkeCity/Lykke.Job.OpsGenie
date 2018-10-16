@@ -28,7 +28,7 @@ namespace Lykke.Job.OpsGenie.Core.Domain
 
         public string Source { get; set; }
 
-        public IDictionary<string, object> Details { get; set; }
+        public IReadOnlyDictionary<string, object> Details { get; set; }
 
         public PriorityLevel Priority { get; set; }
 

@@ -12,9 +12,4 @@
     <ProjectReference Include="..\..\client\Lykke.Job.OpsGenie.Contract\Lykke.Job.OpsGenie.Contract.csproj" />
     <ProjectReference Include="..\Lykke.Job.OpsGenie.Core\Lykke.Job.OpsGenie.Core.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="protobuf-net">
-      <HintPath>C:\Users\NETSK\.nuget\packages\protobuf-net\2.4.0\lib\netcoreapp2.1\protobuf-net.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 </Project>

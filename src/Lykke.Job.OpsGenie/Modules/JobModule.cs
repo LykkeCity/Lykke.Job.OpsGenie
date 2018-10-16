@@ -3,6 +3,7 @@ using Autofac;
 using Common;
 using Lykke.Common.Log;
 using Lykke.Job.OpsGenie.AzureRepositories;
+using Lykke.Job.OpsGenie.AzureRepositories.Domain;
 using Lykke.Job.OpsGenie.AzureRepositories.Queue;
 using Lykke.Job.OpsGenie.Core.Domain;
 using Lykke.Job.OpsGenie.Core.Services;
