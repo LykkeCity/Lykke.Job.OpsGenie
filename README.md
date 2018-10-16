@@ -16,4 +16,39 @@ Include  https://www.nuget.org/packages/Lykke.Job.OpsGenie.Client/ in your proje
 
 ## Lykke.Job.OpsGenie Configuration
 
-TBD
+### Settings
+
+```json
+{
+  "MonitoringServiceClient": 
+  {
+    "MonitoringServiceUrl": "" // lykke monitoring client 
+  },
+  "OpsGenieJob": 
+  {
+    "ApiUrl": "https://api.opsgenie.com/",
+    "Db": 
+    {
+      "LogsConnString": "",
+      "DataConnString": ""
+    },
+    "DefaultDomainApiKey": "", //Configure OpsGenie Web API via web portal and put key for default integration. All alerts with domain, which do not math "Domain" sections, goes to this integration 
+    "Domains": 
+    [
+      {
+        "Name": "BIL",  // unique mnemonic to distinct domain
+        "ApiKey": "" // api key for configured web api integration.
+      }
+    ]
+  },
+  "SlackNotifications": 
+  {
+    "AzureQueue": 
+    {
+      "ConnectionString": ",
+      "QueueName": "slack-notifications"
+    },
+    "ThrottlingLimitSeconds": 60
+  }
+}
+```
