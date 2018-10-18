@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Threading.Tasks;
+using AsyncFriendlyStackTrace;
 using Lykke.MonitoringServiceApiCaller;
 
 namespace Lykke.Job.OpsGenie
@@ -112,7 +113,7 @@ namespace Lykke.Job.OpsGenie
                     app.UseDeveloperExceptionPage();
 
                 app.UseLykkeForwardedHeaders();
-                app.UseLykkeMiddleware(ex => new ErrorResponse {ErrorMessage = "Technical problem"});
+                app.UseLykkeMiddleware(ex => new ErrorResponse {ErrorMessage = ex.ToAsyncString() });
 
                 app.UseMvc();
                 app.UseSwagger(c =>
